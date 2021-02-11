@@ -1,0 +1,42 @@
+﻿@using System.Web.Mvc.Ajax; 
+@model List<String>
+
+@{
+	ViewData["Title"] = "Digitalise";
+
+
+
+	AjaxOptions AjaxOptions = new AjaxOptions { HttpMethod = "POST",
+		InsertionMode = InsertionMode.Replace, UpdateTargetId = "ReCountList" };
+	InitialiseNumericalData submitData = new InitialiseNumericalData();
+}
+
+<h1>Digitalise</h1>
+
+
+@using (Html.BeginForm("GetMagicData", "EuroFin"))
+{
+
+	<label>Specifiy a Starting number</label>
+	<input asp-for=@submitData.StartNumber value="" />
+	<br />
+
+	<label for="endingNumber">Specifiy a End number</label>
+	<input asp-for=@submitData.EndNumber value="" />
+	<br />
+
+	<div id="ReCountList">
+
+		<ul>
+
+			@foreach (var item in Model)
+			{
+
+				<li>@item</li>
+
+			}
+		</ul>
+
+		<input type="submit" id="submitnumbers" value="Submit">
+	</div>
+}
